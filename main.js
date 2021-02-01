@@ -43,4 +43,4 @@ client.on('message', message => {
 });
 
 
-client.login('NzkwODE4ODM5MzcyNzU5MDgw.X-GJcA.7Y4DQEMAkt7XInZV8uNMhh4FzOU');
+client.login('secret');
