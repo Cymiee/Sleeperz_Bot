@@ -25,20 +25,8 @@ client.on('message', message => {
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
 
-    if (command === 'ping') {
-        client.commands.get('ping').execute(message, args);
-    } else if (command === 'youtube') {
-        client.commands.get('youtube').execute(message, args);
-    } else if (command === 'kick') {
-        client.commands.get('kick').execute(message, args);
-    } else if (command === 'ban') {
-        client.commands.get('ban').execute(message, args);
-    } else if (command === 'mute') {
-        client.commands.get('mute').execute(message, args);
-    } else if (command === 'unmute') {
-        client.commands.get('unmute').execute(message, args);
-    } else if (command === 'marco') {
-        client.commands.get('marco').execute(message, args);
+    if (client.commands.has(command)){
+        client.commands.get(command).execute(message, args);
     }
 });
 
