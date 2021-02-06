@@ -1,11 +1,16 @@
+//import libraries and files
 const Discord = require('discord.js');
-
-const client = new Discord.Client();
-
-const prefix = '-';
-
 const fs = require('fs');
+const { UpdateCaption } = require('./tools/captionupdater');
 
+//bot info
+const client = new Discord.Client();
+const prefix = '-';
+const token = fs.readFileSync('./personal/token.txt', 'utf-8');
+const updateCaptionEveryXSeconds = 15
+
+
+//import commands
 client.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands/.').filter(file => file.endsWith('.js'));
@@ -15,8 +20,11 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
+
 client.once('ready', () => {
     console.log('Sleeperz Bot is online!');
+    UpdateCaption(client)
+    setInterval(UpdateCaption, 1000*updateCaptionEveryXSeconds, client)
 });
 
 client.on('message', message => {
@@ -31,4 +39,4 @@ client.on('message', message => {
 });
 
 
-client.login('secret');
+client.login(token);
