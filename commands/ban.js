@@ -1,10 +1,11 @@
+const roles = require("../tools/roles.js")
+
 module.exports = {
     name: 'ban',
     description: "makes poeple go bye bye",
     execute(message, args) {
         const member = message.mentions.users.first();
-        
-        if (message.member.roles.cache.has('773808091086716958')){
+        if (message.member.roles.cache.has(roles.GetRoleId("admin"))){
             if(member){
                 const memberTarger = message.guild.members.cache.get(member.id);
                 memberTarger.ban();
